@@ -1,22 +1,9 @@
-require_relative '../lib/concerns/memorable'
-
-  class Artist 
-   self.reset_all
-    self.all.clear
+module Concerns::Findable
+  def find_by_name(name)
+    self.all.detect{|item| item.name == name}
   end
 
-  def self.count
-    self.all.count
+  def find_or_create_by_name(name)
+    self.find_by_name(name) || self.create(name)
   end
 end 
-
-class Song 
-  def self.reset_all
-    self.all.clear
-  end
-
-  def self.count
-    self.all.count
-  end
-  
-end
